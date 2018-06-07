@@ -1,8 +1,8 @@
 
-SYMBOLS_TO_ESCAPE = {"<":"&lt",
-					 ">":"&gt",
-					 "&":"&amp",
-					 "\"":"&quot"}
+SYMBOLS_TO_ESCAPE = {"<":"&lt;",
+					 ">":"&gt;",
+					 "&":"&amp;",
+					 "\"":"&quot;"}
 
 def escape_html_tags(html_line):
 	escaped_line = ""
