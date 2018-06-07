@@ -8,7 +8,7 @@ import re
 import random
 from functools import wraps
 
-pattern = re.compile(r"[^.+>]\w+(?=<.+$)")
+pattern = re.compile(r"[^.+>]\w+[\s*\w*\s*\w*]*(?=<.+$)")
 
 # task 1
 
@@ -91,4 +91,9 @@ def wrap_text_html(input_data):
 
 
 print(handle_text_html("<f><tt>text</ttt></>"))
+print(handle_text_html("<f><tt>text test</ttt></>"))
+print(handle_text_html("<f><tt>text test text2</ttt></>"))
+print(handle_text_html("<f><tt>text test text uui</ttt></>"))
+print(handle_text_html("<f><tt>text test text uui fff dddd</ttt></>"))
+
 print(wrap_text_html("to be or not to be, that is the question"))
