@@ -8,7 +8,7 @@ import re
 import random
 from functools import wraps
 
-pattern = re.compile(r"[^.+>]\w+[\s*\w*\s*\w*]*(?=<.+$)")
+pattern = re.compile(r"[^.+>]\w+[\s*\w*]*(?=<.+$)")
 
 # task 1
 
