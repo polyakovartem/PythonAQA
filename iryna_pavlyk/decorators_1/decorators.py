@@ -14,6 +14,15 @@ pattern = re.compile(r"[^.+>]\w+(?=<.+$)")
 
 
 def escape_html():
+    """This function as a decorator function handles input text
+    (as *args from function to wrap) and escaped html tags from it
+
+    Args:
+         function(func) - function to wrap
+
+    Returns:
+         match[0](str) - text, that is wrapped into html tags
+    """
     def real_decorator(function):
         @wraps(function)
         def wrapper(*args, **kwargs):
@@ -47,14 +56,15 @@ tags = ["a", "li", "form", "i", "b", "aside", "iframe",
 
 
 def add_html_tags():
-    """This function as a decorator function wrapped an input text into
-     random html tags
-       Args:
-           input_data(str) - text, that need to be wrapped
+    """This function as a decorator function handles input text
+    (as *args from function to wrap) and wrapped it into html tags.
 
-       Returns:
-           output_data(str) - text, that is wrapped into html tags
-       """
+    Args:
+         function(func) - function to wrap
+
+    Returns:
+         output_data(str) - text, that is wrapped into html tags
+    """
     def real_decorator(function):
         @wraps(function)
         def wrapper(*args, **kwargs):
