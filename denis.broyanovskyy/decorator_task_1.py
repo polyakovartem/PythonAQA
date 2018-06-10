@@ -9,5 +9,5 @@ def del_tags(fn):
 
 
 @del_tags
-def return_text_without_tags(text):
+def return_text_without_tags(text, *args, **kwargs):
     return text
