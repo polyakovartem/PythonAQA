@@ -1,3 +1,10 @@
+#Task 2
+'''
+HTML tags Decorator. Implement as abstract as possible to be able to add new HTML tags quickly
+input: to be or not to be, that is the question
+output: <div><b>to be or not to be, that is the question</b></div>
+'''
+
 test_string = 'to be or not to be, that is the question'
 
 
