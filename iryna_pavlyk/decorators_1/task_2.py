@@ -1,5 +1,5 @@
 """
-This module describes a homework related to homework with decorators.
+This module describes a homework related to decorators.
 """
 __author__ = "Iryna Pavlyk"
 __email__ = "iruska.m1@ukr.net"
