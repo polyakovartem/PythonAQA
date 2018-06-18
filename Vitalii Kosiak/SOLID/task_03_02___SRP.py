@@ -1,5 +1,5 @@
 """
-This module describes a homework related to homework with decorators.
+This module describes a homework related to homework SOLID SRP.
 """
 import random
 import datetime as dt
