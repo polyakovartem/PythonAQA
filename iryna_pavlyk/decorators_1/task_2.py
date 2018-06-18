@@ -47,4 +47,5 @@ def wrap_text_html(input_data):
     return input_data
 
 
-print(wrap_text_html("to be or not to be, that is the question"))
+if __name__ == '__main__':
+    print(wrap_text_html("to be or not to be, that is the question"))

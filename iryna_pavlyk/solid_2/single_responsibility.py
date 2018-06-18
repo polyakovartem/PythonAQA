@@ -7,9 +7,9 @@ __email__ = "iruska.m1@ukr.net"
 FILENAME = "text.txt"
 my_text = [
     "My name is Ira.",
-    "I have a pet fff.",
+    "I have a petfff.",
     "It is a dog.",
-    "Its name is Sparky"
+    "Its name is Sparky."
 ]
 
 
@@ -70,10 +70,11 @@ class TextHandler:
         return TextHandler.write_to_file(self, text, filename)
 
 
-handler_1 = TextHandler()
-handler_1.write_to_file(my_text, FILENAME)
-print(handler_1.read_file(FILENAME))
-handler_1.change_word("dog", "cat", FILENAME)
-print(handler_1.read_file(FILENAME))
-handler_1.change_word("fff", "", FILENAME)
-print(handler_1.read_file(FILENAME))
+if __name__ == '__main__':
+    handler_1 = TextHandler()
+    handler_1.write_to_file(my_text, FILENAME)
+    print(handler_1.read_file(FILENAME))
+    handler_1.change_word("dog", "cat", FILENAME)
+    print(handler_1.read_file(FILENAME))
+    handler_1.change_word("fff", "", FILENAME)
+    print(handler_1.read_file(FILENAME))

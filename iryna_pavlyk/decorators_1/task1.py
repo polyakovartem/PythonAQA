@@ -48,8 +48,9 @@ def handle_text_html(input_data):
     return input_data
 
 
-print(handle_text_html('<f><tt>text</ttt></>'))
-print(handle_text_html('<f><tt>text test</ttt></>'))
-print(handle_text_html('<f><tt>tex"t t"est text2</ttt></>'))
-print(handle_text_html('<f><tt>text& test text uui</ttt></>'))
-print(handle_text_html('<f><tt>text test 3333>3 text uui fff ddd</ttt></>'))
+if __name__ == '__main__':
+    print(handle_text_html('<f><tt>text</ttt></>'))
+    print(handle_text_html('<f><tt>text test</ttt></>'))
+    print(handle_text_html('<f><tt>tex"t t"est text2</ttt></>'))
+    print(handle_text_html('<f><tt>text& test text uui</ttt></>'))
+    print(handle_text_html('<f><tt>text test 3333>3 text uui fff ddd</ttt></>'))
