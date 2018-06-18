@@ -53,5 +53,5 @@ if __name__ == '__main__':
     print(manager.calculate_salary())
     worker = WorkerSalary(700, 1.25, 25)
     print(worker.calculate_salary())
-    intern = InternSalary(500, 1, 15)
-    print(intern.calculate_salary())
+    trainee = InternSalary(500, 1, 15)
+    print(trainee.calculate_salary())
