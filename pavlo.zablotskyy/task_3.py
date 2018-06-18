@@ -3,29 +3,12 @@ import math
 This is an example of doctest usage and SOLID principles implementation
 S - Single Resposibility principle. Each class represents only one shape and methods work only with this shape
  and no other, so Square does not calculate area of Circle, etc.
-
+O - Open/Closed principle. Class Square inherits class Rectangle and overrides __init__ method, but does not change
+ __init__ of Rectangle. Square also adds new method get_perimeter().
+L - Liskov substitution principle. We can pass Rectangle or Square object to Area calculator, it will behave the same.
+I - Interface segregation principle.
+D - Dependency inversion principle. We depend upon abstraction shape and not upon details what this shape is.
 """
-
-
-class Square:
-    """
-        Square accepts only one parameter and raises ValueError if this parameter is < 0
-        get_area() returns square area
-        >>> print (Square(5).get_area())
-        25
-        >>> print (Square(-1).get_area())
-        Traceback (most recent call last):
-            ...
-        ValueError: Side should be greater or equal 0
-    """
-
-    def __init__(self, side_a):
-        if side_a < 0:
-            raise ValueError("Side should be greater or equal 0")
-        self.side_a = side_a
-
-    def get_area(self):
-        return self.side_a * self.side_a
 
 
 class Rectangle:
@@ -50,6 +33,28 @@ class Rectangle:
 
     def get_area(self):
         return self.side_a * self.side_b
+
+
+class Square(Rectangle):
+    """
+        Square accepts only one parameter and raises ValueError if this parameter is < 0
+        get_area() returns square area
+        >>> print (Square(5).get_area())
+        25
+        >>> print (Square(-1).get_area())
+        Traceback (most recent call last):
+            ...
+        ValueError: Side should be greater or equal 0
+    """
+
+    def __init__(self, side_a):
+        if side_a < 0:
+            raise ValueError("Side should be greater or equal 0")
+        self.side_a = self.side_b = side_a
+
+    def get_perimeter(self):
+        return self.side_a * 4
+
 
 class Triangle:
     """
@@ -89,13 +94,28 @@ class Circle:
         self.radius = radius
 
     def get_area(self):
-        return math.pi * self.radius * self.radius
-"""
-shapes = (Square(5), Rectangle(5, 6), Triangle(5, 6, 7), Circle(5))
+        return math.pi * self.radius ** 2
 
-for shape in shapes:
-    print(shape.get_area())
-"""
+
+class AreaCalculator():
+    def __init__(self):
+        self.shapes_container = []
+
+    def add_shape(self, shape):
+        self.shapes_container.append(shape)
+
+    def calculate_area(self):
+        for shape in self.shapes_container:
+            print ("Area of {} is {}".format(type(shape).__name__, shape.get_area()))
+
+area_calc = AreaCalculator()
+area_calc.add_shape(Square(5))
+area_calc.add_shape(Rectangle(5, 6))
+area_calc.add_shape(Triangle(5, 6, 7))
+area_calc.add_shape(Circle(5))
+
+area_calc.calculate_area()
+
 
 if __name__ == "__main__":
     import doctest
