@@ -1,45 +1,41 @@
 """
-This module describes a homework related to homework SOLID SRP.
+LSP (Liskov substitution principle) 
 """
-import random
-import datetime as dt
 
-class Order:
-    """This class contains tools for order."""
-    def __init__(self, customer, email, cart, date):
-        self.customer = customer
-        self.cart = list(cart)
-        self.email = email
-        self.date = date
-
-    def charge(self):
-        """This method get paynement from customer."""
-        print('Get paynement from %s' % self.customer.upper())
-        # get money from customer
-        
-    def show_details(self):
-        """This method show details."""
-        print('Name = {} \nEmail = {} \nCart = {} \nDate = {}'.format(self.customer, self.email, self.cart, self.date))
+from abc import abstractmethod
 
 
-class Mailer(Order):
+class Printer (object):
     
-    def send_mail(self, content):
-        cont = content
-        print('Emailing... to {}, on {}, text is "{}"'.format(self.customer, self.email, cont))
-        # send `content` to mail `customer`
+    def start_print(self):
+        pass
+
+    def stop_print(self):
+        pass
 
 
-class Coupon:
-    def __init__(self, code=None):
-        code = code if code is not None else Coupon.generate_code()
-    def generate_code():
-        print('code = ' + str(random.randint(10001, 99999)))
-        # generate code of cupone
+class Main_comp(Printer):
 
+    def start_print(self):
+        print ('Printing...')
 
-zakaz1 = Order('customer_name', 'viths@i.ua', ['pos1','pos2','pos3'], str(dt.datetime.now()))
-zakaz1.charge()
-zakaz1.show_details()
-mail1 = Mailer.send_mail(zakaz1, 'Contet of email')
-coupon1 = Coupon.generate_code()
+    def stop_print(self):
+        print('Stop')
+
+class Another_device(Printer):
+    def start_print(self):
+        print ('Printing...')
+
+    def stop_print(self):
+        print('Stop')
+
+class Copy1(Main_comp):
+    def make_copy(self):
+        print('START PRINT...')
+        Main_comp.start_print(self)
+        Main_comp.stop_print(self)
+        print('FINISH')
+        
+if __name__ == '__main__':
+    c1 = Copy1()
+    c1.make_copy()
