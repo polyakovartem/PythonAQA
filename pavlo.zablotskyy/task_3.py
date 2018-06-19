@@ -7,7 +7,8 @@ O - Open/Closed principle. Class Square inherits class Rectangle and overrides _
  __init__ of Rectangle. Square also adds new method get_perimeter().
 L - Liskov substitution principle. We can pass Rectangle or Square object to Area calculator, it will behave the same.
 I - Interface segregation principle.
-D - Dependency inversion principle. We depend upon abstraction shape and not upon details what this shape is.
+D - Dependency inversion principle. We depend upon abstraction notifier and not upon details what this notifier is or
+ how it is organized.
 """
 
 
@@ -97,9 +98,15 @@ class Circle:
         return math.pi * self.radius ** 2
 
 
+class Notifier:
+    def notify(self):
+        print("User successfully notified")
+
+
 class AreaCalculator():
-    def __init__(self):
+    def __init__(self, notifier):
         self.shapes_container = []
+        self.notifier = notifier
 
     def add_shape(self, shape):
         self.shapes_container.append(shape)
@@ -107,8 +114,11 @@ class AreaCalculator():
     def calculate_area(self):
         for shape in self.shapes_container:
             print ("Area of {} is {}".format(type(shape).__name__, shape.get_area()))
+            self.notifier.notify()
 
-area_calc = AreaCalculator()
+notifier = Notifier()
+
+area_calc = AreaCalculator(notifier)
 area_calc.add_shape(Square(5))
 area_calc.add_shape(Rectangle(5, 6))
 area_calc.add_shape(Triangle(5, 6, 7))
