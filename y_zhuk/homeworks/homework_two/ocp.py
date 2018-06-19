@@ -51,6 +51,4 @@ class CalculateArea(object):
 
 if __name__ == '__main__':
     rect = CalculateArea(Rectangle(5, 3).area()).calculate()
-    print(rect)
     sq = CalculateArea(Square(2).area()).calculate()
-    print(sq)

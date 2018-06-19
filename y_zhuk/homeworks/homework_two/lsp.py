@@ -68,7 +68,5 @@ class SecondDriver(Car):
 
 
 if __name__ == '__main__':
-    d1 = FirstDriver()
-    d1.go()
-    d2 = SecondDriver()
-    d2.go()
+    FirstDriver().go()
+    SecondDriver().go()

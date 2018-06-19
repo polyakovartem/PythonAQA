@@ -48,16 +48,18 @@ class ActivateCooler(Cooler):
         print("Frost mode has activated")
 
 
+class Driver(ActivateMusic):
+    pass
+
+
+class SecondDriver(ActivateCooler):
+    pass
+
+
 if __name__ == '__main__':
+    Driver().engage_ignition()
+    Driver().inject_cd()
+    Driver().turn_on_music()
 
-    class Driver(ActivateMusic):
-        turn_on_music = ActivateMusic()
-        turn_on_music.engage_ignition()
-        turn_on_music.inject_cd()
-        turn_on_music.turn_on_music()
-
-
-    class SecondDriver(ActivateCooler):
-        turn_on_cool = ActivateCooler()
-        turn_on_cool.engage_ignition()
-        turn_on_cool.swith_on_cooler()
+    SecondDriver().engage_ignition()
+    SecondDriver().swith_on_cooler()
