@@ -1,5 +1,7 @@
 """
 To use utility, using cmd run: python wget_analog.py file_address [word]
+The utility prints number of words in the file,
+statistics of [word] or the statistics of all words if [word] is not entered.
 """
 
 
