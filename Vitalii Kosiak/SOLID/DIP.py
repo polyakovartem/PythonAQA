@@ -9,7 +9,7 @@ Details should depend on abstractions.
 from abc import abstractmethod
 
 
-
+#TODO def group
 class Visitors(object):
     """Describe..."""
     @abstractmethod

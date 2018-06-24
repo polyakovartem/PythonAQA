@@ -2,7 +2,7 @@
 This module describes a homework related to homework SOLID SRP.
 """
 import random
-import datetime as dt
+import dateti
 
 class Order:
     """This class contains tools for order."""
