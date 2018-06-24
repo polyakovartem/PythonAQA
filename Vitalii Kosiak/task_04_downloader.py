@@ -15,7 +15,19 @@ class Downloader ():
         self.url = url
         
         if self.url[(len(self.url)-3):] == 'txt':
-
+            try:
+                resp = ur.urlopen(url)
+                data = resp.read()
+                return data.decode('utf-8')
+            except:
+                print('Smth is wrong!')
+        else:
+            print('Unknown format!')
+            
+    def get_filename (self, url):
+        '''Description'''
+        self.url = url
+        if self.url[(len(self.url)-3):] == 'txt':
             tn = ' '
             fname = ' '
             ite = len(self.url) - 5
@@ -26,15 +38,7 @@ class Downloader ():
                 ite -= 1
                 
             fname = fname[::-1].replace('/','')
-            
-            try:
-                resp = ur.urlopen(url)
-                data = resp.read()
-                return 'Name of file is: ' + '"' + fname.strip(' ').title()+ '"' + '\n\n' + data.decode('utf-8')
-            except:
-                print('Smth is wrong!')
-        else:
-            print('Unknown format!')
+            return 'Name of file is: ' + '"' + fname.strip(' ').title()+ '"' + '\n'
 
             
 class Mcounter ():
@@ -44,6 +48,7 @@ class Mcounter ():
         '''Description'''
         self.phrase = phrase
         return len(phrase.split())
+        
     
     def words_stat(self, phrase):
         '''Description'''
@@ -63,6 +68,11 @@ class Mcounter ():
         self.liiist = liiist
         for i in liiist:
             if i != None: print(i)
+
+    def col_count (self, phrase):
+        '''Description'''
+        self.phrase = phrase
+        return Counter(phrase.split())
              
                        
 adress = 'http://myres.zzz.com.ua/test.txt'
@@ -74,8 +84,12 @@ data = d.df(adress)
 print(' ')
 print('Adress of test file is: ' + '"http://myres.zzz.com.ua/test.txt"')
 print(' ')
+print(d.get_filename(adress))
 print(data)
 print(' ')
 print('The number of words is: ' + str(c.cw(data)))
 print(' ')
 c.e_print(c.words_stat(data))
+print(' ')
+print(' ')
+print(c.col_count(data))
