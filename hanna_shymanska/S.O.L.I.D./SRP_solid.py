@@ -1,7 +1,6 @@
 class Charge:
-    def __init__(self, customer, cart):
+    def __init__(self, customer):
         self.customer = customer
-        self.cart = list(cart)
     @staticmethod
     def pay():
         print('Payment for all products')
