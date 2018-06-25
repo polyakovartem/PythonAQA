@@ -26,6 +26,10 @@ class VipOrder(IDiscount):
         return self.discount * 0.7
 
 
+def main():
+    Order(5).calculate_amount()
+    VipOrder(10).calculate_amount()
+
+
 if __name__ == '__main__':
-    o = Order(5).calculate_amount()
-    vo = VipOrder(10).calculate_amount()
+    main()

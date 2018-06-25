@@ -49,17 +49,24 @@ class ActivateCooler(Cooler):
 
 
 class Driver(ActivateMusic):
-    pass
+
+    def listen_music(self):
+        Driver().engage_ignition()
+        Driver().inject_cd()
+        Driver().turn_on_music()
 
 
 class SecondDriver(ActivateCooler):
-    pass
+
+    def air_cooling(self):
+        SecondDriver().engage_ignition()
+        SecondDriver().swith_on_cooler()
+
+
+def main():
+    Driver().listen_music()
+    SecondDriver().air_cooling()
 
 
 if __name__ == '__main__':
-    Driver().engage_ignition()
-    Driver().inject_cd()
-    Driver().turn_on_music()
-
-    SecondDriver().engage_ignition()
-    SecondDriver().swith_on_cooler()
+    main()

@@ -103,8 +103,12 @@ class WorkWIthFile(File):
         return
 
 
-if __name__ == "__main__":
+def main():
     st = File(filename, data).store_text()
     b = WorkWIthFile(st, word, new_file)
     b.lookup_word_in_text()
     b.delete_word_in_text()
+
+
+if __name__ == "__main__":
+    main()

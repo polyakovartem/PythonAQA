@@ -67,6 +67,10 @@ class SecondDriver(Car):
         return print("Here we go too")
 
 
-if __name__ == '__main__':
+def main():
     FirstDriver().go()
     SecondDriver().go()
+
+
+if __name__ == '__main__':
+    main()
