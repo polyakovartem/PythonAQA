@@ -46,9 +46,17 @@ class CalculateArea(object):
         self.figure = figure
 
     def calculate(self):
-        return self.figure
+        return self.figure.area()
+
+
+def main():
+
+    list_of_figures = [Rectangle(5, 3), Square(2)]
+    for figure in list_of_figures:
+        figure_name = figure.__class__.__name__
+        area = CalculateArea(figure).calculate()
+        print("Area of {} is: {:.2f}".format(figure_name, area))
 
 
 if __name__ == '__main__':
-    rect = CalculateArea(Rectangle(5, 3).area()).calculate()
-    sq = CalculateArea(Square(2).area()).calculate()
+    main()
