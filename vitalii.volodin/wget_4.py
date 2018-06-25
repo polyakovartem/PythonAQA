@@ -6,6 +6,7 @@ import math
 import sys
 import re
 
+
 RE_ALPHA = "[\S\w+('-)?]+"
 
 
@@ -25,9 +26,9 @@ class ProgressBar(IProgressBar):
         percent_progress = math.floor(self.downloaded_content/int(self.file_size) * 100)
 
         print('Downloading: {0}  {1}% [{2} of {3}]  {3} bytes'.format(self.file_name,
-                                                           percent_progress,
-                                                           self.downloaded_content,
-                                                           self.file_size),
+                                                                      percent_progress,
+                                                                      self.downloaded_content,
+                                                                      self.file_size),
               end='\r')
 
 
@@ -42,7 +43,7 @@ class DisplayProgressBar(IProgressBar):
 class IDataProvider(ABC):
     @property
     def chunk_size(self):
-        return 2048
+        return 8192
 
     @abstractmethod
     def get_content(self):
@@ -132,7 +133,7 @@ class WordStatistic(IStatistic):
         return result
 
     def get_statistic_data(self):
-        counter = Counter(self.split_text()).most_common(10)
+        counter = Counter(self.split_text()).most_common(15)
         stat = {letter: count for (letter, count) in counter}
         return stat
 
@@ -171,11 +172,12 @@ def words_statistic(url):
         info.append(action(data).get_statistic_data())
 
     print('Words statistic of {}:\n\nWord Count: {}\nStatistic: {}'.format(file_name,
-                                                                            info[0],
-                                                                            info[1]))
+                                                                           info[0],
+                                                                           info[1]))
 
 if __name__ == '__main__':
     # https://www.w3.org/TR/PNG/iso_8859-1.txt
+    # http://www.dsf.unica.it/~fiore/LearningPython.pdf
     url = str(sys.argv[1])
     pyget(url)
     words_statistic(url)
