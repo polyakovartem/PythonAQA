@@ -1,23 +1,16 @@
-"""
-To use utility, using cmd run: python wget_analog.py file_address [word]
-The utility prints number of words in the file,
-statistics of [word] or the statistics of all words if [word] is not entered.
-"""
-
-
-import sys
+import urllib.request
 from collections import Counter
 
 
-class FileOpen:
-    def __init__(self, file):
-        self.file = file
+class FileDownload:
+    def __init__(self, file_url):
+        self.file_url = file_url
 
-    def file_read(self):
+    def download(self):
         try:
-            with open(self.file, 'r') as f:
-                file_data = f.read()
-                return file_data
+            filedata = urllib.request.urlopen(self.file_url)
+            data = filedata.read()
+            return data
         except(IOError, RuntimeError):
             return ''
 
@@ -65,21 +58,20 @@ class SingleWordStatistics:
 
 
 def main():
-    data_f = FileOpen(sys.argv[1]).file_read()
+    file = FileDownload('https://wordpress.org/plugins/about/readme.txt')
+    data_f = file.download()
     words_l = WordList(data_f).word_list()
     words_c = CountWords(words_l).count_words()
     word_stat = WordsStatistics(words_l).word_statistics()
+    print('File {} contains {} words'.format(file.file_url, words_c))
 
-    print('File {} contains {} words'.format(sys.argv[1], words_c))
-
-    while True:
-        try:
-            single_stat = SingleWordStatistics(word_stat, sys.argv[2]).single_word_stat()
-            print('word {} repeats {} times'.format(sys.argv[2], single_stat))
-            break
-        except:
-            print('\nBelow is a statistics of words in file {}: \n{}'.format(sys.argv[1], word_stat))
-            break
+    word = input('Please enter word to check the statistics or press enter'
+                 ' if you want to see the statistics of all words')
+    if word != '':
+        single_stat = SingleWordStatistics(word_stat, word).single_word_stat()
+        print('word {} repeats {} times'.format(word, single_stat))
+    else:
+        print('\nBelow is a statistics of words in file {}: \n{}'.format(file.file_url, word_stat))
 
 
 if __name__ == '__main__':
