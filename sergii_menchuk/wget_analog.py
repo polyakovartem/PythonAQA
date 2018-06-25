@@ -10,7 +10,7 @@ class FileDownload:
         try:
             filedata = urllib.request.urlopen(self.file_url)
             data = filedata.read()
-            return data
+            return data.decode('UTF-8')
         except(IOError, RuntimeError):
             return ''
 
@@ -58,7 +58,7 @@ class SingleWordStatistics:
 
 
 def main():
-    file = FileDownload('https://wordpress.org/plugins/about/readme.txt')
+    file = FileDownload('https://www.sample-videos.com/text/Sample-text-file-10kb.txt')
     data_f = file.download()
     words_l = WordList(data_f).word_list()
     words_c = CountWords(words_l).count_words()
@@ -66,10 +66,10 @@ def main():
     print('File {} contains {} words'.format(file.file_url, words_c))
 
     word = input('Please enter word to check the statistics or press enter'
-                 ' if you want to see the statistics of all words')
+                 ' if you want to see the statistics of all words:\n')
     if word != '':
         single_stat = SingleWordStatistics(word_stat, word).single_word_stat()
-        print('word {} repeats {} times'.format(word, single_stat))
+        print('Word {} repeats {} times'.format(word, single_stat))
     else:
         print('\nBelow is a statistics of words in file {}: \n{}'.format(file.file_url, word_stat))
 
