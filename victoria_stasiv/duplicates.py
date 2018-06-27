@@ -16,9 +16,9 @@ for path, folders, files in os.walk(root):
         filename = os.path.join(path, file)
         try:
             f = open(filename, 'r+b')
+            contents = f.read()
         except:
             continue
-        contents = f.read()
         h = hash(contents)
         if h in files_d:
             l = files_d[h]
