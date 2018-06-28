@@ -28,3 +28,13 @@ Create/Find a real-world examples for each SOLID printipal:
 4. Interface Segregation
 5. Dependency Invertion
 ```
+
+### Task 4
+```
+Create analog of wget application which downloads file, counts words and provides word statistics
+```
+
+### Task 5
+```
+Find all file duplicates on HDD
+```
