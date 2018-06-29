@@ -12,8 +12,6 @@ class Rectangle:
         return self.width * self.height 
  
  
-class DrawRectangle: 
+class DrawRectangle:
     def draw(self): 
-        # Do some drawing
-        pass
-
+        return "This function draws rectangle"

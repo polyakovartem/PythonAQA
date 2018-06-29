@@ -16,14 +16,17 @@ class FreeMan:
     def walk_East(self, dist):
         self.position[0] += dist
         
+
 '''
 "Prisioner is a Person" relationship no longer holds since a `Prisoner` is not a FreeMan.
 '''
 class Prisoner:
-    PRISON_LOCATION = (3, 3)
+    
+    prison_location = (3, 3)
 
     def __init__(self):
-        self.position = type(self).PRISON_LOCATION
+        self.position = type(self).prison_location
+
 
 def main():
 
@@ -36,7 +39,7 @@ def main():
     except:
         pass
     
-    print("The location of the prison: {}".format(prisoner.PRISON_LOCATION))
+    print("The location of the prison: {}".format(prisoner.prison_location))
     print("The current position of the prisoner: {}".format(prisoner.position))
 
 if __name__ == "__main__":
