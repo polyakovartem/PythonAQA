@@ -54,13 +54,16 @@ class DuplicatesFinder:
             print(files)
 
 
-finder = DuplicatesFinder("C:\\Windows")
+finder = DuplicatesFinder("C:\\")
+
+start = time.time()
+
 finder.get_files_list()
 finder.get_files_hashes()
 finder.find_duplicates()
 
+diff = time.time() - start
+
 finder.display_files_hashes()
-print("Processed {} files".format(len(finder.files_list)))
 
-
-
+print("Processed {} files in {} seconds".format(len(finder.files_list), diff))
