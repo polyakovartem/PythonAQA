@@ -5,11 +5,10 @@ Interface Segregation principle
 __author__ = "Iryna Pavlyk"
 __email__ = "iruska.m1@ukr.net"
 
-from abc import ABCMeta, abstractmethod
+from abc import abstractmethod
 
 
 class Call:
-
     @abstractmethod
     def make_call(self):
         return "I can make a call"

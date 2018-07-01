@@ -4,7 +4,7 @@ Liskov Substitution principle
 """
 
 
-class Animal(object):
+class Animal:
     def __init__(self, name):
         self.name = name
 
@@ -53,11 +53,10 @@ if __name__ == '__main__':
     duck = Duck("Galina")
     puppy = Dog("Spunky")
     fish = Fish("Goldy")
-    animal.speak()
     animal.eat('apple')
-    duck.speak()
     duck.eat('corn')
-    puppy.speak()
     puppy.eat('bones')
-    fish.speak()
     fish.eat('worms')
+    all = [animal, duck, puppy, fish]
+    for el in all:
+        el.speak()
