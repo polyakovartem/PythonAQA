@@ -10,9 +10,9 @@ import hashlib
 
 def find_all_files(root_folder):
     '''
-    Function finds all path/files in specified directory.
-    :param root_folder: path to folder where to search for duplicated.
-    :return: list of files from directory (path + file_name)
+    Function finds all path + files in specified directory.
+    :param root_folder: str: path to folder where to search for duplicates.
+    :return: list of files from directory (path + file_name).
     '''
     files_in_folder = []
 
@@ -26,9 +26,9 @@ def find_all_files(root_folder):
 def hash_file(file_name, chunk_size=1024):
     '''
     Function caches content of file.
-    :param file_name: path + file_name of file, that need to be hashed.
-           chunk_size: chunk of file to process (1024 by default)
-    :return:
+    :param file_name: str: path + file_name of file, that need to be hashed;
+           chunk_size: chunk of file to process (1024 by default).
+    :return: str: hashed file content.
     '''
     hasher = hashlib.md5()
 
