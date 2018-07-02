@@ -1,5 +1,5 @@
 import collections
-import os
+#import os
 import os.path
 
 catadress = 'E:/test'
