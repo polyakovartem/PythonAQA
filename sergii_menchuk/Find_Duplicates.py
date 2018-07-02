@@ -1,3 +1,5 @@
+from time import time
+from functools import wraps
 import os
 import hashlib
 import string
@@ -22,11 +24,13 @@ def get_hash(file):
 
 
 def find_dupl(dupl, skipped):
+    file_counter = 0
     for drive in get_drives():
         for root, dirs, files in os.walk(drive):
             for name in files:
                 path = os.path.join(root, name)
                 try:
+                    file_counter += 1
                     file_hash = get_hash(path)
                     if file_hash in dupl:
                         dupl[file_hash].append(path)
@@ -34,10 +38,29 @@ def find_dupl(dupl, skipped):
                         dupl[file_hash] = [path]
                 except (PermissionError, OSError):
                     skipped.append(path)
-    return dupl, skipped
+    return dupl, skipped, file_counter
 
 
-def main():
+def scanning_time(f):
+    @wraps(f)
+    def wrapper(*args, **kwargs):
+        start = time()
+        result = f(*args, **kwargs)
+        end = time()
+        lapsed = end-start
+        seconds = lapsed % 60
+        seconds = int(seconds)
+        minutes = (lapsed / 60) % 60
+        minutes = int(minutes)
+        hours = (lapsed / (60 * 60)) % 24
+        print('_' * 30)
+        print("Elapsed time: %d:%d:%d" % (hours, minutes, seconds))
+        return result
+    return wrapper
+
+
+@scanning_time
+def report_result():
     print("{} {} {}".format('Duplicated Files Hash', 10 * ' ', 'Paths'))
     duplicates = {}
     skipped_files = []
@@ -54,6 +77,12 @@ def main():
     print("The following files hasn't been scanned due to lack of the permission:")
     for item in result[1]:
             print(item)
+
+    print('{} files have been scanned'.format(result[2]))
+
+
+def main():
+    report_result()
 
 
 if __name__ == '__main__':
