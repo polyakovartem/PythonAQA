@@ -6,7 +6,7 @@
 ```
 Escape HTML tags decorator object
 input: text with HTML tags
-output: text with excaped HTML tags
+output: text with escaped HTML tags
 ```
 
 #### References
